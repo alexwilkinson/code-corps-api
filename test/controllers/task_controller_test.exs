@@ -16,12 +16,12 @@ defmodule CodeCorps.TaskControllerTest do
 
   describe "index" do
     test "lists all entries", %{conn: conn} do
-    [task_1, task_2] = insert_pair(:task)
+      [task_1, task_2] = insert_pair(:task)
 
-    conn
-    |> request_index
-    |> json_response(200)
-    |> assert_ids_from_response([task_1.id, task_2.id])
+      conn
+      |> request_index
+      |> json_response(200)
+      |> assert_ids_from_response([task_1.id, task_2.id])
     end
 
     test "lists all entries newest first", %{conn: conn} do
@@ -161,8 +161,8 @@ defmodule CodeCorps.TaskControllerTest do
   describe "update" do
     @tag :authenticated
     test "updates and renders chosen resource when data is valid", %{conn: conn, current_user: current_user} do
-    task = insert(:task, user: current_user)
-    assert conn |> request_update(task, @valid_attrs) |> json_response(200)
+      task = insert(:task, user: current_user)
+      assert conn |> request_update(task, @valid_attrs) |> json_response(200)
     end
 
     @tag :authenticated
